@@ -1,4 +1,4 @@
-#import sys
+import sys
 import pygame
 
 from ship import Ship
@@ -13,14 +13,15 @@ def run_game():
     pygame.display.set_caption("Alien Invasion!")
 
     # Make a ship
-    ship = Ship(screen)
+    ship = Ship(ai_settings, screen)
 
     # Set the background colour
     bg_color = (230, 230, 230)
 
     # Start the main loop for game
     while True:
-        gf.check_events()
+        gf.check_events(ship)
+        ship.update()
         gf.update_screen(ai_settings, screen, ship)
         # Watch for keyboard and mouse events
         for event in pygame.event.get():
